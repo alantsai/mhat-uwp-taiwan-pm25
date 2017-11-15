@@ -20,22 +20,83 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
         {
             PM25Result = new ObservableCollection<PM25Model>();
 
-            //_allResult.Add(
-            //    new PM25Model()
-            //    {
-            //        PM25 = "10",
-            //        county = "臺中市"
-            //    });
-            //_allResult.Add(
-            //    new PM25Model()
-            //    {
-            //        PM25 = "20",
-            //        county = "台北市"
-            //    });
+            if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            {
+                _allResult.Add(
+                    new PM25Model()
+                    {
+                        PM25 = "10",
+                        county = "臺中市",
+                        ItemUnit = "ug/m3",
+                        Site = "沙鹿",
+                         DataCreationDate = "2017-01-01"
+                    });
 
-            //FilterDate();
+                _allResult.Add(new PM25Model()
+                    {
+                        PM25 = "20",
+                        county = "臺中市",
+                        ItemUnit = "ug/m3",
+                        Site = "西屯",
+                         DataCreationDate = "2017-01-01"
+                    });
 
-            LoadData();
+                _allResult.Add(
+                    new PM25Model()
+                    {
+                        PM25 = "20",
+                        county = "台北市",
+                        ItemUnit = "ug/m3",
+                        Site = "大安",
+                         DataCreationDate = "2017-01-01"
+                    });
+
+                _allResult.Add(
+                   new PM25Model()
+                   {
+                       PM25 = "20",
+                       county = "台北市2",
+                       ItemUnit = "ug/m3",
+                       Site = "大安",
+                       DataCreationDate = "2017-01-01"
+                   });
+
+                _allResult.Add(
+                   new PM25Model()
+                   {
+                       PM25 = "20",
+                       county = "台北市3",
+                       ItemUnit = "ug/m3",
+                       Site = "大安",
+                       DataCreationDate = "2017-01-01"
+                   });
+
+                _allResult.Add(
+                   new PM25Model()
+                   {
+                       PM25 = "20",
+                       county = "台北市4",
+                       ItemUnit = "ug/m3",
+                       Site = "大安",
+                       DataCreationDate = "2017-01-01"
+                   });
+
+                _allResult.Add(
+                   new PM25Model()
+                   {
+                       PM25 = "20",
+                       county = "台北市5",
+                       ItemUnit = "ug/m3",
+                       Site = "大安",
+                       DataCreationDate = "2017-01-01"
+                   });
+
+                FilterDate();
+            }
+            else
+            {
+                LoadData();
+            }
         }
 
         private async void LoadData()

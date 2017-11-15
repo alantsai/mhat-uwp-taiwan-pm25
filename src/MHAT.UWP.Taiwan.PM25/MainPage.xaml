@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="PM25ModelTemplate">
-            <Grid Height="110" Width="279" Margin="10" >
+            <Grid Height="110" Width="175" Margin="10" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="2*"/>
@@ -20,7 +20,9 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{Binding county}" Style="{StaticResource TitleTextBlockStyle}" Grid.ColumnSpan="2" Margin="0,-8,0,65" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" FontWeight="Bold" Height="53" Grid.RowSpan="2"/>
                 <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0.5,0,-1" >
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Site}"/>
                     <TextBlock Text="{Binding PM25WithUnit, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding DataCreationDate}"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -36,7 +38,16 @@
             <RowDefinition Height="89*"/>
         </Grid.RowDefinitions>
         <TextBlock TextWrapping="Wrap" Text="台灣縣市PM 2.5" FontSize="48" FontFamily="Microsoft YaHei" FontWeight="Bold" VerticalAlignment="Top"/>
-        <ListView ItemTemplate="{StaticResource PM25ModelTemplate}" ItemsSource="{Binding PM25Result}" Grid.Row="1"/>
         <TextBox HorizontalAlignment="Left" Margin="10,102,0,0" TextWrapping="Wrap" PlaceholderText="輸入要過濾的縣市" VerticalAlignment="Top" Height="32" Width="350" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ListView ItemTemplate="{StaticResource PM25ModelTemplate}" ItemsSource="{Binding PM25Result}" Grid.Row="1" ScrollViewer.HorizontalScrollMode="Enabled" 
+          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+          ScrollViewer.VerticalScrollMode="Disabled"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid MaximumRowsOrColumns="3"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
     </Grid>
 </Page>
