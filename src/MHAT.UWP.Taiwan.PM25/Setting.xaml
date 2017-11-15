@@ -1,0 +1,19 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MHAT.UWP.Taiwan.PM25"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:MHAT.UWP.Taiwan.PM25.ViewModel"
+    x:Class="MHAT.UWP.Taiwan.PM25.Setting"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <ViewModel:SettingPageViewModel/>
+    </Page.DataContext>
+
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="10,0,0,0">
+        <TextBlock TextWrapping="Wrap" Text="設定" FontFamily="{StaticResource HeaderTest}" FontSize="{StaticResource HeaderTextSize}" HorizontalAlignment="Center" FontWeight="Bold"/>
+        <ToggleSwitch Header="是否要保留最後一次的搜索詞？" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsOn="{Binding RemberFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    </StackPanel>
+</Page>

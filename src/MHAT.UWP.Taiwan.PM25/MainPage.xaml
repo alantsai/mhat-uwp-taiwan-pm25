@@ -29,9 +29,7 @@
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar>
-            <CommandBar.Content>
-                <Grid/>
-            </CommandBar.Content>
+            <AppBarButton Icon="Setting" Label="設定(setting)" Click="AppBarButton_Click_1"/>
             <AppBarButton Label="關於(about)" Icon="ContactInfo" Click="AppBarButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>

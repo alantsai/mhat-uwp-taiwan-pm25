@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MHAT.UWP.Taiwan.PM25.Bll;
 using MHAT.UWP.Taiwan.PM25.Model;
+using Windows.Storage;
 
 namespace MHAT.UWP.Taiwan.PM25.ViewModel
 {
@@ -19,6 +20,8 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
         public MainPageViewModel()
         {
             PM25Result = new ObservableCollection<PM25Model>();
+
+            Filter = GetFilterText();
 
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
@@ -118,6 +121,9 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
                     return;
 
                 _filter = value;
+
+                SetFilterText(value);
+
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Filter)));
 
                 FilterDate();
@@ -149,6 +155,32 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
                     PM25Result.Insert(i, item);
                 }
             }
+        }
+
+        public void SetFilterText(string filter)
+        {
+            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(SettingPageViewModel.ReemberFilterSettingKey))
+            {
+                if ((bool)ApplicationData.Current.RoamingSettings.Values[SettingPageViewModel.ReemberFilterSettingKey])
+                {
+                    ApplicationData.Current.RoamingSettings.Values[nameof(Filter)] = filter;
+                }
+            }
+        }
+
+        public string GetFilterText()
+        {
+            var result = string.Empty;
+
+            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(SettingPageViewModel.ReemberFilterSettingKey))
+            {
+                if ((bool)ApplicationData.Current.RoamingSettings.Values[SettingPageViewModel.ReemberFilterSettingKey])
+                {
+                    result = ApplicationData.Current.RoamingSettings.Values[nameof(Filter)]?.ToString() ?? string.Empty;
+                }
+            }
+
+            return result;
         }
     }
 }

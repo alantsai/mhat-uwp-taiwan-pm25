@@ -31,5 +31,10 @@ namespace MHAT.UWP.Taiwan.PM25
         {
             Frame.Navigate(typeof(About));
         }
+
+        private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Setting));
+        }
     }
 }
