@@ -12,6 +12,8 @@
         <TextBlock TextWrapping="Wrap" Text="這是一個呈現台灣縣市的PM2.5值的app。"/>
         <TextBlock TextWrapping="Wrap" Text="資料來自於 政府資訊公開平台的 細懸浮微粒資料（PM2.5） - 每個小時更新一次 - 更多資訊請參考："/>
         <HyperlinkButton Content="細懸浮微粒資料（PM2.5）" NavigateUri="https://data.gov.tw/dataset/34827" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
+        <TextBlock TextWrapping="Wrap" Text="Logo、Icon圖片來自於：" Margin="0,20,0,0"/>
+        <HyperlinkButton Content="http://www.geograph.org.uk/photo/3220320" NavigateUri="http://www.geograph.org.uk/photo/3220320" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
         <TextBlock TextWrapping="Wrap" Text="如果對於這個app有任何問題或者建議，都歡迎寫email、到github留issue或者到Gitter留言：" Margin="0,20,0,0"/>
         <HyperlinkButton Content="email - contact@alantsai.net" NavigateUri="mailto:contact@alantsai.net" HorizontalAlignment="Left"/>
         <HyperlinkButton Content="github" NavigateUri="https://github.com/alantsai/mhat-uwp-taiwan-pm25/issues" HorizontalAlignment="Left"/>
