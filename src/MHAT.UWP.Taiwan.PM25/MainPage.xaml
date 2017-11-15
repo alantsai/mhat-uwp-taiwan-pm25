@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModel="using:MHAT.UWP.Taiwan.PM25.ViewModel"
     x:Class="MHAT.UWP.Taiwan.PM25.MainPage"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Background="#FF333333" NavigationCacheMode="Required">
     <Page.Resources>
         <DataTemplate x:Key="PM25ModelTemplate">
             <Grid Height="110" Width="175" Margin="10" >
@@ -28,7 +28,10 @@
         </DataTemplate>
     </Page.Resources>
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar x:Name="commandBar" RenderTransformOrigin="0.5,0.5">
+            <CommandBar.RenderTransform>
+                <CompositeTransform TranslateY="48"/>
+            </CommandBar.RenderTransform>
             <AppBarButton Icon="Setting" Label="設定(setting)" Click="AppBarButton_Click_1"/>
             <AppBarButton Label="關於(about)" Icon="ContactInfo" Click="AppBarButton_Click"/>
         </CommandBar>
@@ -39,6 +42,52 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="LoadingState">
+                <VisualState x:Name="Loading"/>
+                <VisualState x:Name="Loaded">
+                    <VisualState.Setters>
+                        <Setter Target="progressBar.(ProgressBar.IsIndeterminate)" Value="False"/>
+                    </VisualState.Setters>
+                    <Storyboard>
+                        <DoubleAnimation Duration="0:0:0.8" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="commandBar" d:IsOptimized="True">
+                            <DoubleAnimation.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Duration="0:0:0.8" To="-2000" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="stackPanel" d:IsOptimized="True">
+                            <DoubleAnimation.EasingFunction>
+                                <BackEase Amplitude="0.2" EasingMode="EaseIn"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Error">
+                    <VisualState.Setters>
+                        <Setter Target="progressBar.(ProgressBar.IsIndeterminate)" Value="False"/>
+                        <Setter Target="progressBar.(UIElement.Visibility)" Value="Visible"/>
+                        <Setter Target="progressBar.(UIElement.Opacity)" Value="0"/>
+                        <Setter Target="textBlock.(TextBlock.Foreground).(SolidColorBrush.Color)">
+                            <Setter.Value>
+                                <Color>Red</Color>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="textBlock.(TextBlock.Text)" Value="系統忙碌中，請稍後重試"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="36*"/>
             <RowDefinition Height="89*"/>
@@ -55,5 +104,14 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
+        <Grid x:Name="grid" Background="#CC000000" Grid.RowSpan="2">
+            <StackPanel x:Name="stackPanel" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform/>
+                </StackPanel.RenderTransform>
+                <TextBlock x:Name="textBlock" Text="讀取中" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="Wrap" Foreground="White" />
+                <ProgressBar x:Name="progressBar" IsIndeterminate="True" Margin="0,10,0,0"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

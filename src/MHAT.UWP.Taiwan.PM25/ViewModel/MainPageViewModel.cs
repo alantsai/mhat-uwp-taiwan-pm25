@@ -104,8 +104,16 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
 
         private async void LoadData()
         {
-            _allResult = await PM25ResultRespository.GetPM25ResultAsync();
-            FilterDate();
+            try
+            {
+                _allResult = await PM25ResultRespository.GetPM25ResultAsync();
+                FilterDate();
+                LoadingState = LoadingStates.Loaded;
+            }
+            catch
+            {
+                LoadingState = LoadingStates.Error;
+            }
         }
 
         private string _filter;
@@ -128,6 +136,30 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
 
                 FilterDate();
             }
+        }
+
+        private LoadingStates _loadingState = LoadingStates.Loading;
+
+        public LoadingStates LoadingState
+        {
+            get { return _loadingState; }
+            set
+            {
+                if (value == _loadingState)
+                    return;
+
+                _loadingState = value;
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LoadingState)));
+            }
+        }
+
+
+        public enum LoadingStates
+        {
+            Loading,
+            Loaded,
+            Error
         }
 
         private void FilterDate()

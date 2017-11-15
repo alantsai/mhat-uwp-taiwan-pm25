@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using MHAT.UWP.Taiwan.PM25.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +23,20 @@ namespace MHAT.UWP.Taiwan.PM25
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private MainPageViewModel ViewModel => DataContext as MainPageViewModel;
+
         public MainPage()
         {
             this.InitializeComponent();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+        }
+
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == nameof(MainPageViewModel.LoadingState))
+            {
+                VisualStateManager.GoToState(this, ViewModel.LoadingState.ToString(), true);
+            }
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)

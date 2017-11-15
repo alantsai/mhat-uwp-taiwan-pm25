@@ -14,6 +14,10 @@ namespace MHAT.UWP.Taiwan.PM25.Bll
     {
         public static async Task<List<PM25Model>> GetPM25ResultAsync()
         {
+            // 測試 loading 和 error state用
+            //await Task.Delay(3000);
+            //throw new Exception("");
+
             var file = await
                 Package.Current.InstalledLocation.GetFileAsync(@"Assets\TestData\sample.json");
 
