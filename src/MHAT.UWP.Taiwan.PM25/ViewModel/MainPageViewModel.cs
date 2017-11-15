@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MHAT.UWP.Taiwan.PM25.Bll;
 using MHAT.UWP.Taiwan.PM25.Model;
 
 namespace MHAT.UWP.Taiwan.PM25.ViewModel
@@ -19,19 +20,27 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
         {
             PM25Result = new ObservableCollection<PM25Model>();
 
-            _allResult.Add(
-                new PM25Model()
-                {
-                    PM25 = "10",
-                    county = "臺中市"
-                });
-            _allResult.Add(
-                new PM25Model()
-                {
-                    PM25 = "20",
-                    county = "台北市"
-                });
+            //_allResult.Add(
+            //    new PM25Model()
+            //    {
+            //        PM25 = "10",
+            //        county = "臺中市"
+            //    });
+            //_allResult.Add(
+            //    new PM25Model()
+            //    {
+            //        PM25 = "20",
+            //        county = "台北市"
+            //    });
 
+            //FilterDate();
+
+            LoadData();
+        }
+
+        private async void LoadData()
+        {
+            _allResult = await PM25ResultRespository.GetPM25ResultAsync();
             FilterDate();
         }
 
