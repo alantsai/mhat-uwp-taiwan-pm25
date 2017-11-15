@@ -8,6 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="111*"/>
+            <RowDefinition Height="389*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" Height="65" Margin="590,10,528,147" TextWrapping="Wrap" Text="台灣縣市PM 2.5" VerticalAlignment="Center" Width="382" FontSize="48" FontFamily="Microsoft YaHei" FontWeight="Bold"/>
 
     </Grid>
 </Page>
