@@ -26,5 +26,10 @@ namespace MHAT.UWP.Taiwan.PM25
         {
             this.InitializeComponent();
         }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(About));
+        }
     }
 }

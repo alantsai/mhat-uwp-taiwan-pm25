@@ -4,5 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MHAT.UWP.Taiwan.PM25"
     RequestedTheme="Light">
+    <Application.Resources>
+        <FontFamily x:Key="HeaderTest">Microsoft YaHei</FontFamily>
+        <x:Double x:Key="HeaderTextSize">48</x:Double>
+    </Application.Resources>
 
 </Application>

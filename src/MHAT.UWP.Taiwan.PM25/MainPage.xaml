@@ -27,6 +27,14 @@
             </Grid>
         </DataTemplate>
     </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid/>
+            </CommandBar.Content>
+            <AppBarButton Label="關於(about)" Icon="ContactInfo" Click="AppBarButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Page.DataContext>
         <ViewModel:MainPageViewModel/>
@@ -37,7 +45,7 @@
             <RowDefinition Height="36*"/>
             <RowDefinition Height="89*"/>
         </Grid.RowDefinitions>
-        <TextBlock TextWrapping="Wrap" Text="台灣縣市PM 2.5" FontSize="48" FontFamily="Microsoft YaHei" FontWeight="Bold" VerticalAlignment="Top"/>
+        <TextBlock TextWrapping="Wrap" Text="台灣縣市PM 2.5" FontSize="{StaticResource HeaderTextSize}" FontFamily="{StaticResource HeaderTest}" FontWeight="Bold" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="10,102,0,0" TextWrapping="Wrap" PlaceholderText="輸入要過濾的縣市" VerticalAlignment="Top" Height="32" Width="350" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <ListView ItemTemplate="{StaticResource PM25ModelTemplate}" ItemsSource="{Binding PM25Result}" Grid.Row="1" ScrollViewer.HorizontalScrollMode="Enabled" 
           ScrollViewer.HorizontalScrollBarVisibility="Auto"
