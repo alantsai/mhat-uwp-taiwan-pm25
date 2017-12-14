@@ -11,23 +11,25 @@
         <DataTemplate x:Key="PM25ModelTemplate">
             <ContentControl Style="{Binding ConditionTextColorStyle}">
                 <Grid Height="110" Width="175" Margin="10" Style="{Binding ConditionBackgroundColorStyle}" >
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="{Binding county}" Style="{StaticResource TitleTextBlockStyle}" Grid.ColumnSpan="2" Margin="10,2,0,65" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" FontWeight="Bold" Height="53" Grid.RowSpan="2" FontFamily="{StaticResource HeaderTest}" />
-                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="10,6,0,-1" >
-                    <TextBlock TextWrapping="Wrap" Text="{Binding Site}"/>
-                    <TextBlock Text="{Binding PM25WithUnit, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <TextBlock TextWrapping="Wrap" Text="{Binding DataCreationDate}"/>
-                </StackPanel>
-            </Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding county}" Style="{StaticResource TitleTextBlockStyle}" Grid.ColumnSpan="2" Margin="10,2,0,65" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" FontWeight="Bold" Height="53" Grid.RowSpan="2" FontFamily="{StaticResource HeaderTest}" />
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="10,6,0,-1" >
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Site}"/>
+                        <TextBlock Text="{Binding PM25WithUnit, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding DataCreationDate}"/>
+                    </StackPanel>
+                </Grid>
             </ContentControl>
         </DataTemplate>
+        <x:Double x:Key="colorLegionHeight">60</x:Double>
+        <x:Double x:Key="colorLegionWidth">150</x:Double>
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar x:Name="commandBar" RenderTransformOrigin="0.5,0.5">
@@ -44,6 +46,10 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="LoadingState">
                 <VisualState x:Name="Loading"/>
@@ -91,12 +97,57 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
-            <RowDefinition Height="36*"/>
-            <RowDefinition Height="89*"/>
+            <RowDefinition Height="183*"/>
+            <RowDefinition Height="101*"/>
+            <RowDefinition Height="436*"/>
         </Grid.RowDefinitions>
-        <TextBlock TextWrapping="Wrap" Text="台灣縣市PM 2.5" FontSize="{StaticResource HeaderTextSize}" FontFamily="{StaticResource HeaderTest}" FontWeight="Bold" VerticalAlignment="Top"/>
+        <TextBlock TextWrapping="Wrap" Text="台灣縣市PM 2.5" FontSize="{StaticResource HeaderTextSize}" FontFamily="{StaticResource HeaderTest}" FontWeight="Bold" VerticalAlignment="Top" Height="63"/>
         <TextBox HorizontalAlignment="Left" Margin="10,102,0,0" TextWrapping="Wrap" PlaceholderText="輸入要過濾的縣市" VerticalAlignment="Top" Height="32" Width="350" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <ListView ItemTemplate="{StaticResource PM25ModelTemplate}" ItemsSource="{Binding PM25Result}" Grid.Row="1" ScrollViewer.HorizontalScrollMode="Enabled" 
+        <Grid HorizontalAlignment="Left" Height="64" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1260">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="67*"/>
+                <ColumnDefinition Width="563*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock TextWrapping="Wrap" Grid.Column="0" Text="顏色說明" FontFamily="{StaticResource HeaderTest}" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
+            <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Auto" Grid.Column="1" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="Margin" Value="20,0,0,0"/>
+                    </Style>
+                </StackPanel.Resources>
+                <ContentControl>
+                    <Grid Style="{StaticResource conditionGood}" Width="{StaticResource colorLegionWidth}" Height="{StaticResource colorLegionHeight}">
+                        <TextBlock Text="良好"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </ContentControl>
+                <ContentControl>
+                    <Grid Style="{StaticResource conditionNormal}" Width="{StaticResource colorLegionWidth}" Height="{StaticResource colorLegionHeight}">
+                        <TextBlock Text="普通"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </ContentControl>
+                <ContentControl>
+                    <Grid Style="{StaticResource conditionAlgeryUnHealthy}" Width="{StaticResource colorLegionWidth}" Height="{StaticResource colorLegionHeight}">
+                        <TextBlock Text="對敏感族群不健康"  VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </ContentControl>
+                <ContentControl>
+                    <Grid Style="{StaticResource conditionUnHealthy}" Width="{StaticResource colorLegionWidth}" Height="{StaticResource colorLegionHeight}">
+                        <TextBlock Text="對所有族群不健康"  VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </ContentControl>
+                <ContentControl Foreground="White">
+                    <Grid Style="{StaticResource conditionNotHealthy}" Width="{StaticResource colorLegionWidth}" Height="{StaticResource colorLegionHeight}">
+                        <TextBlock Text="非常不健康" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </ContentControl>
+                <ContentControl Foreground="White">
+                    <Grid Style="{StaticResource conditionDanger}" Width="{StaticResource colorLegionWidth}" Height="{StaticResource colorLegionHeight}">
+                        <TextBlock Text="危害"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </ContentControl>
+            </StackPanel>
+        </Grid>
+        <ListView ItemTemplate="{StaticResource PM25ModelTemplate}" ItemsSource="{Binding PM25Result}" Grid.Row="2" ScrollViewer.HorizontalScrollMode="Enabled" 
           ScrollViewer.HorizontalScrollBarVisibility="Auto"
           ScrollViewer.VerticalScrollMode="Disabled"
           ScrollViewer.VerticalScrollBarVisibility="Hidden">
@@ -106,7 +157,7 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <Grid x:Name="grid" Background="#CC000000" Grid.RowSpan="2" d:IsHidden="True">
+        <Grid x:Name="grid" Background="#CC000000" Grid.RowSpan="3" d:IsHidden="True">
             <StackPanel x:Name="stackPanel" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
                 <StackPanel.RenderTransform>
                     <CompositeTransform/>
