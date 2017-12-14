@@ -8,13 +8,9 @@
     x:Class="MHAT.UWP.Taiwan.PM25.MainPage"
     mc:Ignorable="d" Background="#FF333333" NavigationCacheMode="Required">
     <Page.Resources>
-        <Style x:Key="conditionDanger" TargetType="Grid">
-            <Setter Property="Background" Value="#FF7E0023" />
-        </Style>
-        <SolidColorBrush x:Key="conditionDangerTextColor" Color="#FFCDD7F1"/>
         <DataTemplate x:Key="PM25ModelTemplate">
-            <ContentControl Foreground="{StaticResource conditionDangerTextColor}">
-            <Grid Height="110" Width="175" Margin="10" Style="{StaticResource conditionDanger}" >
+            <ContentControl Style="{Binding ConditionTextColorStyle}">
+                <Grid Height="110" Width="175" Margin="10" Style="{Binding ConditionBackgroundColorStyle}" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="2*"/>
