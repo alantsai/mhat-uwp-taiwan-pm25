@@ -8,8 +8,13 @@
     x:Class="MHAT.UWP.Taiwan.PM25.MainPage"
     mc:Ignorable="d" Background="#FF333333" NavigationCacheMode="Required">
     <Page.Resources>
+        <Style x:Key="conditionDanger" TargetType="Grid">
+            <Setter Property="Background" Value="#FF7E0023" />
+        </Style>
+        <SolidColorBrush x:Key="conditionDangerTextColor" Color="#FFCDD7F1"/>
         <DataTemplate x:Key="PM25ModelTemplate">
-            <Grid Height="110" Width="175" Margin="10" >
+            <ContentControl Foreground="{StaticResource conditionDangerTextColor}">
+            <Grid Height="110" Width="175" Margin="10" Style="{StaticResource conditionDanger}" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="2*"/>
@@ -18,13 +23,14 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="{Binding county}" Style="{StaticResource TitleTextBlockStyle}" Grid.ColumnSpan="2" Margin="0,-8,0,65" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" FontWeight="Bold" Height="53" Grid.RowSpan="2"/>
-                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0.5,0,-1" >
+                <TextBlock Text="{Binding county}" Style="{StaticResource TitleTextBlockStyle}" Grid.ColumnSpan="2" Margin="10,2,0,65" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" FontWeight="Bold" Height="53" Grid.RowSpan="2" FontFamily="{StaticResource HeaderTest}" />
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="10,6,0,-1" >
                     <TextBlock TextWrapping="Wrap" Text="{Binding Site}"/>
                     <TextBlock Text="{Binding PM25WithUnit, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <TextBlock TextWrapping="Wrap" Text="{Binding DataCreationDate}"/>
                 </StackPanel>
             </Grid>
+            </ContentControl>
         </DataTemplate>
     </Page.Resources>
     <Page.BottomAppBar>
@@ -104,7 +110,7 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <Grid x:Name="grid" Background="#CC000000" Grid.RowSpan="2">
+        <Grid x:Name="grid" Background="#CC000000" Grid.RowSpan="2" d:IsHidden="True">
             <StackPanel x:Name="stackPanel" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
                 <StackPanel.RenderTransform>
                     <CompositeTransform/>
