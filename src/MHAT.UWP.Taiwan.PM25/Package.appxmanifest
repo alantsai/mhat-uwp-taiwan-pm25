@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="6338cd9e-9711-438a-a995-0d377a9451b6" Publisher="CN=Alan Tsai" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="6338cd9e-9711-438a-a995-0d377a9451b6" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="57832AlanTsai.PM2.5" Publisher="CN=CD96D981-79A1-4A07-8BC2-C5FB11D24818" Version="1.2.0.0" />
+  <mp:PhoneIdentity PhoneProductId="242aba55-c524-4d70-a415-321439a903bb" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>台灣縣市PM2.5</DisplayName>
     <PublisherDisplayName>Alan Tsai</PublisherDisplayName>

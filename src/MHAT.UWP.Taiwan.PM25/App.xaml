@@ -7,6 +7,38 @@
     <Application.Resources>
         <FontFamily x:Key="HeaderTest">Microsoft YaHei</FontFamily>
         <x:Double x:Key="HeaderTextSize">48</x:Double>
+
+        <Style x:Key="conditionGood" TargetType="Grid">
+            <Setter Property="Background" Value="#FF00E800" />
+        </Style>
+        
+        <Style x:Key="conditionNormal" TargetType="Grid">
+            <Setter Property="Background" Value="Yellow" />
+        </Style>
+
+        <Style x:Key="conditionAlgeryUnHealthy" TargetType="Grid">
+            <Setter Property="Background" Value="#FFFF7E00" />
+        </Style>
+
+        <Style x:Key="conditionUnHealthy" TargetType="Grid">
+            <Setter Property="Background" Value="Red" />
+        </Style>
+        
+        <Style x:Key="conditionNotHealthy" TargetType="Grid">
+            <Setter Property="Background" Value="#FF8F3F97" />
+        </Style>
+
+        <Style x:Key="conditionDanger" TargetType="Grid">
+            <Setter Property="Background" Value="#FF7E0023" />
+        </Style>
+        
+        <Style x:Key="whiteColor" TargetType="ContentControl">
+            <Setter Property="Foreground" Value="#FFCDD7F1"/>
+        </Style>
+
+        <Style x:Key="blackColor" TargetType="ContentControl">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
     </Application.Resources>
 
 </Application>
