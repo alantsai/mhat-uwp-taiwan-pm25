@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -30,6 +33,9 @@ namespace MHAT.UWP.Taiwan.PM25
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            AppCenter.Start("d3eea57d-8fe0-4d6d-94f2-f8d7ce7137de", typeof(Analytics));
+            AppCenter.Start("d3eea57d-8fe0-4d6d-94f2-f8d7ce7137de", typeof(Crashes));
         }
 
         /// <summary>
