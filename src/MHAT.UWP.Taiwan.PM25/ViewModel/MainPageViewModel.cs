@@ -28,7 +28,7 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
                 _allResult.Add(
                     new PM25Model()
                     {
-                        PM25 = "10",
+                        PM25 = "301",
                         county = "臺中市",
                         ItemUnit = "ug/m3",
                         Site = "沙鹿",
@@ -37,7 +37,7 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
 
                 _allResult.Add(new PM25Model()
                     {
-                        PM25 = "20",
+                        PM25 = "205",
                         county = "臺中市",
                         ItemUnit = "ug/m3",
                         Site = "西屯",
@@ -47,7 +47,7 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
                 _allResult.Add(
                     new PM25Model()
                     {
-                        PM25 = "20",
+                        PM25 = "190",
                         county = "台北市",
                         ItemUnit = "ug/m3",
                         Site = "大安",
@@ -57,7 +57,7 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
                 _allResult.Add(
                    new PM25Model()
                    {
-                       PM25 = "20",
+                       PM25 = "125",
                        county = "台北市2",
                        ItemUnit = "ug/m3",
                        Site = "大安",
@@ -67,7 +67,7 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
                 _allResult.Add(
                    new PM25Model()
                    {
-                       PM25 = "20",
+                       PM25 = "60",
                        county = "台北市3",
                        ItemUnit = "ug/m3",
                        Site = "大安",
@@ -77,7 +77,7 @@ namespace MHAT.UWP.Taiwan.PM25.ViewModel
                 _allResult.Add(
                    new PM25Model()
                    {
-                       PM25 = "20",
+                       PM25 = "25",
                        county = "台北市4",
                        ItemUnit = "ug/m3",
                        Site = "大安",
